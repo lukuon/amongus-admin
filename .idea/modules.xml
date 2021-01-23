@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/amongus-discord-bot.iml" filepath="$PROJECT_DIR$/.idea/amongus-discord-bot.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../amongus_admin/.idea/amongus_admin.iml" filepath="$PROJECT_DIR$/../amongus_admin/.idea/amongus_admin.iml" />
     </modules>
   </component>
 </project>
