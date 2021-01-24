@@ -1,13 +1,13 @@
 [tool.poetry]
 name = "amongus_admin"
-version = "0.1.0"
+version = "0.2.0"
 description = "A discord bot to control muting like AmongMuteUs, but manually"
 authors = ["lukuon <hello@lukuon.me>"]
 license = "Apache License 2.0"
 
 [tool.poetry.dependencies]
 python = "^3.8"
-"discord.py" = {extras = ["voice"], version = "^1.6.0"}
+"discord.py" = {extras = ["commands", "voice"], version = "^1.6.0"}
 python-dotenv = "^0.15.0"
 
 [tool.poetry.dev-dependencies]
