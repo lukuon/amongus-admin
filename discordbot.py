@@ -1,7 +1,7 @@
 import asyncio
 import os
 import logging
-from typing import Dict, Set, Optional
+from typing import Dict, Set, Optional, List
 
 from discord import (
     Member,
@@ -350,6 +350,7 @@ class AmongUsSession:
 
 class AmongUsSessionManager:
     session_prefix: str = "AmongUs"
+    session_counter: List[Optional[str]]
     guild: Guild
     locale: Localized
     sessions: Dict[str, AmongUsSession]
@@ -360,6 +361,7 @@ class AmongUsSessionManager:
         self.guild = guild
         self.locale = English()
         self.sessions = {}
+        self.session_counter = []
         self.session_prefix = session_prefix or self.session_prefix
         self.member_sessions_idx = {}
 
@@ -370,10 +372,18 @@ class AmongUsSessionManager:
             self.locale = English()
 
     async def create_session(self, author: Member, channel: TextChannel):
-        count = len(self.sessions)
+        count = len(self.session_counter)
+        for i, session_id in enumerate(self.session_counter):
+            if session_id is None:
+                count = i
+        if count < len(self.session_counter):
+            self.session_counter[count] = ...  # to prevent other create_session() to take the number
         session_id = f"{self.session_prefix}-{count + 1}"
         self.member_sessions_idx[author] = session_id
         self.sessions[session_id] = await AmongUsSession.create(session_id, author, channel, self)
+        if count < len(self.session_counter):
+            self.session_counter[count] = session_id
+        self.session_counter.append(session_id)
 
     async def close_session(self, admin: Member):
         session_id = self.member_sessions_idx.get(admin)
