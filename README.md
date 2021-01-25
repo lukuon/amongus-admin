@@ -21,6 +21,8 @@ BOTがうまく動かない場合はローカルインストールを試して�
 
 # How to use / 使用方法
 
+BOTが見れるチャンネルで`/amongus setting locale japanese`と打つとメッセージが日本語になります。
+
 1. Go to any channel of the server (that the bot can access) and type `/amongus`  <br />  どこかのチャンネル(BOTが認識できる場所)で`/amongus`と打つ
 
 ![Create](screenshots/create.png)
