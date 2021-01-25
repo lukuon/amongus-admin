@@ -1,7 +1,7 @@
 import asyncio
 import os
 import logging
-from enum import Enum
+from bot_enum import ActionReaction, AmongUsSessionStatus
 from typing import Dict, Set, Optional
 
 from discord import (
@@ -17,7 +17,7 @@ from discord import (
 import dotenv
 from discord.ext.commands import Context, Bot
 
-from localized import Localized, English, Japanese
+from localization import Localized, English, Japanese
 
 logger = logging.getLogger("amongus_admin")
 
@@ -28,20 +28,6 @@ bot = Bot(command_prefix=prefix)
 
 async def async_nop():
     return
-
-
-class ActionReaction(str, Enum):
-    START = "▶️"
-    STOP = "⏹"
-    CLOSE = "❌"
-    DEAD = "☠️"
-    GATHER = "📢"
-    MUTE = "🔇"
-
-
-class AmongUsSessionStatus(int, Enum):
-    ALIVE = 0
-    DEAD = 1
 
 
 class AmongUsSession:
