@@ -328,6 +328,7 @@ class AmongUsSession:
         if self.deleting or member != self.admin or self.started:
             return
         self.started = True
+        self.status.update({_member: AmongUsSessionStatus.ALIVE for _member in self.status})
         admin = member
         logger.info(f"start session: {self.id} @ {self.manager.guild.name}")
         await self.end_emergency(admin, prepare_vc=True)
