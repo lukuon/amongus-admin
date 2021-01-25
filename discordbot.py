@@ -1,7 +1,6 @@
 import asyncio
 import os
 import logging
-from bot_enum import ActionReaction, AmongUsSessionStatus
 from typing import Dict, Set, Optional
 
 from discord import (
@@ -17,6 +16,7 @@ from discord import (
 import dotenv
 from discord.ext.commands import Context, Bot
 
+from bot_enum import ActionReaction, AmongUsSessionStatus
 from localization import Localized, English, Japanese
 
 logger = logging.getLogger("amongus_admin")
@@ -404,7 +404,7 @@ async def on_ready():
                 continue
             async for message in channel.history(limit=5):
                 if message.author.bot:
-                    return
+                    continue
                 dm = await message.author.create_dm()
                 async for _message in dm.history():
                     if _message.author == bot.user:

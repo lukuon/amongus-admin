@@ -12,8 +12,7 @@ class Localized:
     no_guild = "First, start or join a AmongUs session in a single Server!"
     locale_set_message = "The Locale for the server is now: English"
     new_session = (
-        "There's a new AmongUs session: `{session_id}`!\n"
-        "Go to the lobby voice channel of the session to join the session!"
+        "There's a new AmongUs session: `{session_id}`!\n" "Go to the lobby voice channel of the session to join!"
     )
     create_message = "Hi {name}! You created an AmongUs session: {session_id}."
     ready_message = f"When ready, press `{ActionReaction.START}` to start the session!"
