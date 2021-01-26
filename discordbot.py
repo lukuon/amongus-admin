@@ -396,6 +396,9 @@ class AmongUsSessionManager:
         for member in session.members:
             if self.member_sessions_idx.get(member) == session.id:
                 del self.member_sessions_idx[member]
+        for i, _session_id in enumerate(self.session_counter):
+            if session_id == _session_id:
+                self.session_counter[i] = None
         del self.sessions[session_id]
 
 
