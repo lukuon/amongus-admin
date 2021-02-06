@@ -12,8 +12,10 @@ from discord import (
     User,
     VoiceState,
     RawReactionActionEvent,
+    Permissions,
 )
 import dotenv
+from discord.abc import Messageable
 from discord.ext.commands import Context, Bot
 
 from bot_enum import ActionReaction, AmongUsSessionStatus
@@ -24,6 +26,11 @@ logger = logging.getLogger("amongus_admin")
 dotenv.load_dotenv(".env")
 prefix = "/"
 bot = Bot(command_prefix=prefix)
+base_permissions = Permissions(29568016)
+bot_invitation_link = (
+    f"https://discord.com/oauth2/authorize?client_id=802513262854799390&permissions="
+    f"{base_permissions.value}&scope=bot"
+)
 
 
 async def async_nop():
@@ -360,18 +367,31 @@ class AmongUsSessionManager:
         logger.info(f"New Guild: {guild.name} ({guild.id})")
         self.guild = guild
         self.locale = English()
+        self.set_locale(guild.preferred_locale)
         self.sessions = {}
         self.session_counter = []
         self.session_prefix = session_prefix or self.session_prefix
         self.member_sessions_idx = {}
 
+    async def check_permissions(self, channel: Messageable, guild: Optional[Guild] = None) -> bool:
+        guild: Guild = guild or self.guild
+        me: Member = guild.me
+        sufficient = base_permissions.is_subset(me.guild_permissions)
+        if not sufficient:
+            await channel.send(
+                self.locale.need_permission_message.format(invitation_link=f"{bot_invitation_link}&guild_id={guild.id}")
+            )
+        return sufficient
+
     def set_locale(self, locale):
-        if locale in ("ja_JP", "japanese", "日本語"):
+        if locale in ("ja", "ja_JP", "japanese", "日本語"):
             self.locale = Japanese()
         else:
             self.locale = English()
 
     async def create_session(self, author: Member, channel: TextChannel):
+        if not await self.check_permissions(channel):
+            return
         count = len(self.session_counter)
         for i, session_id in enumerate(self.session_counter):
             if session_id is None:
@@ -386,6 +406,8 @@ class AmongUsSessionManager:
         self.session_counter.append(session_id)
 
     async def close_session(self, admin: Member):
+        if not await self.check_permissions(admin):
+            return
         session_id = self.member_sessions_idx.get(admin)
         if not session_id:
             return
@@ -403,7 +425,39 @@ class AmongUsSessionManager:
 
 
 managers: Dict[Guild, AmongUsSessionManager] = {}
-debug = False
+
+
+async def get_manager(guild: Optional[Guild], author: User = None) -> Optional[AmongUsSessionManager]:
+    guild: Optional[Guild] = guild
+    manager: Optional[AmongUsSessionManager] = None
+    if not guild:
+        user: User = author
+        for _guild, _manager in managers.items():
+            if user in _manager.member_sessions_idx:
+                guild, manager = _guild, _manager
+                break
+    else:
+        manager = managers.get(guild)
+        writable_channel = [
+            channel for channel in guild.text_channels if channel.permissions_for(guild.me).send_messages
+        ]
+        target_channel = writable_channel[0]
+        if not writable_channel:
+            logger.error(f"No writable channel. leaving @ {guild.name}")
+            await guild.leave()
+        ok: bool
+        if not manager:
+            manager = managers[guild] = AmongUsSessionManager(guild)
+            ok = await manager.check_permissions(target_channel, guild)
+        else:
+            manager.guild = guild
+            ok = await manager.check_permissions(target_channel, guild)
+        if not ok:
+            logger.error(f"No enough permission. leaving @ {guild.name}")
+            await guild.leave()
+            del managers[guild]
+            return None
+    return manager
 
 
 # 起動時に動作する処理
@@ -411,53 +465,43 @@ debug = False
 async def on_ready():
     # 起動したらターミナルにログイン通知が表示される
     logger.info("ログインしました")
-    if debug:
-        for channel in bot.get_all_channels():
-            if not isinstance(channel, TextChannel):
-                continue
-            async for message in channel.history(limit=5):
-                if message.author.bot:
-                    continue
-                dm = await message.author.create_dm()
-                async for _message in dm.history():
-                    if _message.author == bot.user:
-                        await _message.delete()
+
+
+@bot.event
+async def on_guild_join(guild: Guild):
+    manager = await get_manager(guild)
+    if manager:
+        writable_channel = [
+            channel for channel in guild.text_channels if channel.permissions_for(guild.me).send_messages
+        ]
+        target_channel = writable_channel[0]
+        if not writable_channel:
+            logger.error(f"No writable channel. leaving @ {guild.name}")
+            await guild.leave()
+        await target_channel.send(managers[guild].locale.help_message)
 
 
 @bot.group(invoke_without_command=True)
 async def amongus(ctx: Context):
-    guild: Optional[Guild] = ctx.guild
-    manager: Optional[AmongUsSessionManager] = None
-    if not guild:
-        user: User = ctx.author
-        for _guild, _manager in managers.items():
-            if user in _manager.member_sessions_idx:
-                guild, manager = _guild, _manager
-                break
-    else:
-        if guild not in managers:
-            managers[guild] = AmongUsSessionManager(guild)
-        manager = managers[guild]
+    manager = await get_manager(ctx.guild, ctx.author)
     if not manager:
         await ctx.send(Localized.no_guild)
         return
     await manager.create_session(ctx.author, ctx.channel)
 
 
+@amongus.command(name="help")
+async def help_command(ctx: Context):
+    manager = await get_manager(ctx.guild, ctx.author)
+    if not manager:
+        await ctx.send(Localized.no_guild)
+        return
+    await ctx.send(manager.locale.help_message)
+
+
 @amongus.command()
 async def setting(ctx: Context, item: Optional[str] = None, new_value: Optional[str] = None):
-    guild: Optional[Guild] = ctx.guild
-    manager: Optional[AmongUsSessionManager] = None
-    if not guild:
-        user: User = ctx.author
-        for _guild, _manager in managers.items():
-            if user in _manager.member_sessions_idx:
-                guild, manager = _guild, _manager
-                break
-    else:
-        if guild not in managers:
-            managers[guild] = AmongUsSessionManager(guild)
-        manager = managers[guild]
+    manager = await get_manager(ctx.guild, ctx.author)
     if not manager:
         await ctx.send(Localized.no_guild)
         return

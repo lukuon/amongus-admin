@@ -8,6 +8,11 @@ class Localized:
     graveyard = "graveyard"
     controls = "[Controls]"
     help_message = f"Hi! I'm AmongUs Admin bot. To start a AmongUs session, type `/amongus`."
+    need_permission_message = (
+        "I don't have enough permissions to manage an AmongUs Session!\n"
+        "Please invite me with the correct permissions with the following link\n\n"
+        "{invitation_link}"
+    )
     error_message = "Oops, wrong command."
     no_guild = "First, start or join a AmongUs session in a single Server!"
     locale_set_message = "The Locale for the server is now: English"
@@ -37,6 +42,7 @@ class Japanese(Localized):
     graveyard = "墓地"
     controls = "[ボタン]"
     help_message = f"こんにちは！AmongUs Adminボットです。AmongUsのセッションを作成するには、`/amongus`とタイプしてください！"
+    need_permission_message = "AmongUsを管理するための権限が足りません！\n" "下のリンクから招待を再度お試しください\n\n" "{invitation_link}"
     error_message = "すみません、、わからないコマンドです。。"
     no_guild = "まず、どこかのサーバーでAmongUsのセッションを開始または参加してください！"
     locale_set_message = "サーバーの言語が変更されました！: 日本語"
