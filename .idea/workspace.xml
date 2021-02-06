@@ -2,15 +2,8 @@
 <project version="4">
   <component name="BlackConnectSettings" lineLength="120" triggerOnEachSave="true" />
   <component name="ChangeListManager">
-    <list default="true" id="ace7de62-69b8-48ea-92ce-bcf88fee1bad" name="Default Changelist" comment=".idea">
-      <change afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.env.sample" beforeDir="false" afterPath="$PROJECT_DIR$/.env.sample" afterDir="false" />
+    <list default="true" id="ace7de62-69b8-48ea-92ce-bcf88fee1bad" name="Default Changelist" comment="add permission restriction + web interface">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/discordbot.py" beforeDir="false" afterPath="$PROJECT_DIR$/discordbot.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/localization.py" beforeDir="false" afterPath="$PROJECT_DIR$/localization.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/poetry.lock" beforeDir="false" afterPath="$PROJECT_DIR$/poetry.lock" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pyproject.toml" beforeDir="false" afterPath="$PROJECT_DIR$/pyproject.toml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -96,7 +89,7 @@
       <option name="presentableId" value="Default" />
       <updated>1611768236641</updated>
       <workItem from="1611768243525" duration="649000" />
-      <workItem from="1612584550990" duration="16436000" />
+      <workItem from="1612584550990" duration="17454000" />
     </task>
     <task id="LOCAL-00001" summary="add FUNDING.yml">
       <created>1611768660778</created>
@@ -147,7 +140,14 @@
       <option name="project" value="LOCAL" />
       <updated>1612585019303</updated>
     </task>
-    <option name="localTasksCounter" value="8" />
+    <task id="LOCAL-00008" summary="add permission restriction + web interface">
+      <created>1612601888013</created>
+      <option name="number" value="00008" />
+      <option name="presentableId" value="LOCAL-00008" />
+      <option name="project" value="LOCAL" />
+      <updated>1612601888013</updated>
+    </task>
+    <option name="localTasksCounter" value="9" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -210,11 +210,12 @@
     <MESSAGE value="add session_counter reset mechanism" />
     <MESSAGE value="add donatebot.io link to FUNDING.yml" />
     <MESSAGE value=".idea" />
-    <option name="LAST_COMMIT_MESSAGE" value=".idea" />
+    <MESSAGE value="add permission restriction + web interface" />
+    <option name="LAST_COMMIT_MESSAGE" value="add permission restriction + web interface" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="true" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
-    <SUITE FILE_PATH="coverage/amongus_admin$app.coverage" NAME="app Coverage Results" MODIFIED="1612601395200" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
+    <SUITE FILE_PATH="coverage/amongus_admin$app.coverage" NAME="app Coverage Results" MODIFIED="1612601535971" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
   </component>
 </project>
