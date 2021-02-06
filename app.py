@@ -64,7 +64,7 @@ if __name__ == "__main__":
     fmt = "%(levelprefix)s [%(name)s]\t%(message)s"
     root_handler.setFormatter(DefaultFormatter(fmt=fmt))
     # noinspection PyArgumentList
-    logging.basicConfig(level=logging.INFO, handlers=[root_handler])
+    logging.basicConfig(level=logging.DEBUG, handlers=[root_handler])
 
     main_loop = asyncio.get_event_loop()
     asyncio.set_event_loop(main_loop)
@@ -78,6 +78,7 @@ if __name__ == "__main__":
                 await bot.close()
 
     asyncio.ensure_future(bot_runner(os.environ["DISCORD_BOT_TOKEN"]))
-    uvicorn.run(app, loop="none", log_config=None)
+    port = int(os.environ.get("PORT", 5000))
+    uvicorn.run(app, host="0.0.0.0", port=port, reload=False, loop="none", log_config=None)
     main_loop.run_until_complete(bot.close())
     _cleanup_loop(main_loop)
