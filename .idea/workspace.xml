@@ -2,10 +2,7 @@
 <project version="4">
   <component name="BlackConnectSettings" lineLength="120" triggerOnEachSave="true" />
   <component name="ChangeListManager">
-    <list default="true" id="ace7de62-69b8-48ea-92ce-bcf88fee1bad" name="Default Changelist" comment="update requirements.txt">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app.py" beforeDir="false" afterPath="$PROJECT_DIR$/app.py" afterDir="false" />
-    </list>
+    <list default="true" id="ace7de62-69b8-48ea-92ce-bcf88fee1bad" name="Default Changelist" comment=".idea" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -90,7 +87,7 @@
       <option name="presentableId" value="Default" />
       <updated>1611768236641</updated>
       <workItem from="1611768243525" duration="649000" />
-      <workItem from="1612584550990" duration="18004000" />
+      <workItem from="1612584550990" duration="18340000" />
     </task>
     <task id="LOCAL-00001" summary="add FUNDING.yml">
       <created>1611768660778</created>
@@ -162,7 +159,21 @@
       <option name="project" value="LOCAL" />
       <updated>1612602732768</updated>
     </task>
-    <option name="localTasksCounter" value="11" />
+    <task id="LOCAL-00011" summary="update uvicorn">
+      <created>1612603120915</created>
+      <option name="number" value="00011" />
+      <option name="presentableId" value="LOCAL-00011" />
+      <option name="project" value="LOCAL" />
+      <updated>1612603120915</updated>
+    </task>
+    <task id="LOCAL-00012" summary=".idea">
+      <created>1612603140477</created>
+      <option name="number" value="00012" />
+      <option name="presentableId" value="LOCAL-00012" />
+      <option name="project" value="LOCAL" />
+      <updated>1612603140477</updated>
+    </task>
+    <option name="localTasksCounter" value="13" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -225,9 +236,10 @@
     <MESSAGE value="add session_counter reset mechanism" />
     <MESSAGE value="add donatebot.io link to FUNDING.yml" />
     <MESSAGE value="add permission restriction + web interface" />
-    <MESSAGE value=".idea" />
     <MESSAGE value="update requirements.txt" />
-    <option name="LAST_COMMIT_MESSAGE" value="update requirements.txt" />
+    <MESSAGE value="update uvicorn" />
+    <MESSAGE value=".idea" />
+    <option name="LAST_COMMIT_MESSAGE" value=".idea" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
     <option name="PRESELECT_EXISTING_CHANGELIST" value="true" />
   </component>
