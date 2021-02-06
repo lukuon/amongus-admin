@@ -79,6 +79,6 @@ if __name__ == "__main__":
 
     asyncio.ensure_future(bot_runner(os.environ["DISCORD_BOT_TOKEN"]))
     port = int(os.environ.get("PORT", 5000))
-    uvicorn.run(app, host="0.0.0.0", port=port, reload=False, loop="none", log_config=None)
+    uvicorn.run(app, host="0.0.0.0", port=port, reload=False, workers=1, loop="none", log_config=None)
     main_loop.run_until_complete(bot.close())
     _cleanup_loop(main_loop)
