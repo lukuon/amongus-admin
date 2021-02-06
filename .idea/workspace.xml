@@ -2,7 +2,9 @@
 <project version="4">
   <component name="BlackConnectSettings" lineLength="120" triggerOnEachSave="true" />
   <component name="ChangeListManager">
-    <list default="true" id="ace7de62-69b8-48ea-92ce-bcf88fee1bad" name="Default Changelist" comment=".idea" />
+    <list default="true" id="ace7de62-69b8-48ea-92ce-bcf88fee1bad" name="Default Changelist" comment=".idea">
+      <change beforePath="$PROJECT_DIR$/Procfile" beforeDir="false" afterPath="$PROJECT_DIR$/Procfile" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -87,7 +89,7 @@
       <option name="presentableId" value="Default" />
       <updated>1611768236641</updated>
       <workItem from="1611768243525" duration="649000" />
-      <workItem from="1612584550990" duration="18340000" />
+      <workItem from="1612584550990" duration="19017000" />
     </task>
     <task id="LOCAL-00001" summary="add FUNDING.yml">
       <created>1611768660778</created>
@@ -173,7 +175,21 @@
       <option name="project" value="LOCAL" />
       <updated>1612603140477</updated>
     </task>
-    <option name="localTasksCounter" value="13" />
+    <task id="LOCAL-00013" summary="add workers = 1">
+      <created>1612603594252</created>
+      <option name="number" value="00013" />
+      <option name="presentableId" value="LOCAL-00013" />
+      <option name="project" value="LOCAL" />
+      <updated>1612603594252</updated>
+    </task>
+    <task id="LOCAL-00014" summary=".idea">
+      <created>1612603600862</created>
+      <option name="number" value="00014" />
+      <option name="presentableId" value="LOCAL-00014" />
+      <option name="project" value="LOCAL" />
+      <updated>1612603600862</updated>
+    </task>
+    <option name="localTasksCounter" value="15" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -238,6 +254,7 @@
     <MESSAGE value="add permission restriction + web interface" />
     <MESSAGE value="update requirements.txt" />
     <MESSAGE value="update uvicorn" />
+    <MESSAGE value="add workers = 1" />
     <MESSAGE value=".idea" />
     <option name="LAST_COMMIT_MESSAGE" value=".idea" />
     <option name="MAKE_NEW_CHANGELIST_ACTIVE" value="true" />
