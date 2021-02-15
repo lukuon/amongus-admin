@@ -1,6 +1,6 @@
 [tool.poetry]
 name = "amongus_admin"
-version = "0.2.0"
+version = "0.2.1"
 description = "A discord bot to control muting like AmongMuteUs, but manually"
 authors = ["lukuon <hello@lukuon.me>"]
 license = "Apache License 2.0"
