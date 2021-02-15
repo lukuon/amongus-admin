@@ -17,7 +17,9 @@ app = FastAPI()
 
 
 @app.middleware("http")
-async def catch_all(_request: Request, _call_next: Callable[[Request], Awaitable[Response]]):
+async def catch_all(request: Request, _call_next: Callable[[Request], Awaitable[Response]]):
+    if request.url.path in ["/ping", "/health_check", "/poke"]:
+        return Response(status_code=200)
     return Response(status_code=302, headers={"Location": bot_invitation_link})
 
 
